@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class _1_IsUnique {
 
-  private static final int EXTENDED_ASCII_CHARSET_LENGTH = 256;
+  private static final int EXTENDED_ASCII_CHARSET_SIZE = 256;
 
   static boolean hasAllUniqueCharacters(String string) {
     int length = string.length();
-    if (length > EXTENDED_ASCII_CHARSET_LENGTH) {
+    if (length > EXTENDED_ASCII_CHARSET_SIZE) {
       return false;
     }
-    boolean[] usedChars = new boolean[EXTENDED_ASCII_CHARSET_LENGTH];
+    boolean[] usedChars = new boolean[EXTENDED_ASCII_CHARSET_SIZE];
     for (int i = 0; i < length; i++) {
       final char character = string.charAt(i);
       if (usedChars[character]) {
@@ -27,7 +27,7 @@ public class _1_IsUnique {
     if (string.length() < 1) {
       return true;
     }
-    if (string.length() > EXTENDED_ASCII_CHARSET_LENGTH) {
+    if (string.length() > EXTENDED_ASCII_CHARSET_SIZE) {
       return false;
     }
     char[] chars = string.toCharArray();

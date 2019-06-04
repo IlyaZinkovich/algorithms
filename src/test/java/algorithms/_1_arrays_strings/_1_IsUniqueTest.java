@@ -21,11 +21,7 @@ class _1_IsUniqueTest {
   @Test
   void testForAllStringsWithNonUniqueCharacters() {
     qt()
-        .forAll(in -> {
-          String string = randomStringsWithUniqueCharacters(in);
-          char character = string.charAt(randomBoundedInt(in, string.length() - 1));
-          return string.replace(character, string.charAt(string.length() - 1));
-        })
+        .forAll(_1_IsUniqueTest::randomStringsWithNonUniqueCharacter)
         .check(string -> !hasAllUniqueCharacters(string));
   }
 
@@ -39,12 +35,14 @@ class _1_IsUniqueTest {
   @Test
   void testForAllStringsWithNonUniqueCharactersWithoutAdditionalDataStructures() {
     qt()
-        .forAll(in -> {
-          String string = randomStringsWithUniqueCharacters(in);
-          char character = string.charAt(randomBoundedInt(in, string.length() - 1));
-          return string.replace(character, string.charAt(string.length() - 1));
-        })
+        .forAll(_1_IsUniqueTest::randomStringsWithNonUniqueCharacter)
         .check(string -> !hasAllUniqueCharactersWithoutAdditionalDataStructures(string));
+  }
+
+  private static String randomStringsWithNonUniqueCharacter(final RandomnessSource in) {
+    String string = randomStringsWithUniqueCharacters(in);
+    char character = string.charAt(randomBoundedInt(in, string.length() - 1));
+    return string.replace(character, string.charAt(string.length() - 1));
   }
 
   private static String randomStringsWithUniqueCharacters(final RandomnessSource in) {
